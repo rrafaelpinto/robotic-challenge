@@ -1,3 +1,4 @@
+import pytest
 from src.main import sort
 
 def test_1_standard_package():
@@ -56,3 +57,36 @@ def test_10_all_boundaries_rejected():
     # Volume > 1M (150*100*100), dimension > 150, and mass = 20
     result = sort(width=150, height=100, length=100, mass=20)
     assert result == "REJECTED"
+
+def test_invalid_negative_values():
+    """Test if negative values raise ValueError."""
+    with pytest.raises(ValueError):
+        sort(width=-1, height=10, length=10, mass=5)
+    with pytest.raises(ValueError):
+        sort(width=10, height=-1, length=10, mass=5)
+    with pytest.raises(ValueError):
+        sort(width=10, height=10, length=-1, mass=5)
+    with pytest.raises(ValueError):
+        sort(width=10, height=10, length=10, mass=-1)
+
+def test_invalid_zero_values():
+    """Test if zero values raise ValueError."""
+    with pytest.raises(ValueError):
+        sort(width=0, height=10, length=10, mass=5)
+    with pytest.raises(ValueError):
+        sort(width=10, height=0, length=10, mass=5)
+    with pytest.raises(ValueError):
+        sort(width=10, height=10, length=0, mass=5)
+    with pytest.raises(ValueError):
+        sort(width=10, height=10, length=10, mass=0)
+
+def test_invalid_type_values():
+    """Test if invalid types raise TypeError."""
+    with pytest.raises(TypeError):
+        sort(width="a", height=10, length=10, mass=5)
+    with pytest.raises(TypeError):
+        sort(width=10, height=[1], length=10, mass=5)
+    with pytest.raises(TypeError):
+        sort(width=10, height=10, length=None, mass=5)
+    with pytest.raises(TypeError):
+        sort(width=10, height=10, length=10, mass={})

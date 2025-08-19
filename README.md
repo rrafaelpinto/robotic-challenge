@@ -80,6 +80,11 @@ python src/main.py 100 10 10 5   # STANDARD
 python src/main.py 200 50 50 15  # SPECIAL
 python src/main.py 10 10 10 25   # SPECIAL
 python src/main.py 160 50 50 30  # REJECTED
+
+python src/main.py 100 10 10      # Error: insufficient arguments
+python src/main.py 100 10 10 abc  # Error: invalid argument type (mass is not a number)
+python src/main.py -10 10 10 5    # Error: negative dimension
+python src/main.py 100 10 10 -5   # Error: negative mass
 ```
 
 ---
