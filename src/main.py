@@ -13,7 +13,27 @@ def sort(width, height, length, mass):
     Returns:
         str: The name of the stack ("STANDARD", "SPECIAL", or "REJECTED").
     """
-    print(f"Sorting package with dimensions ({width} cm, {height} cm, {length} cm) and mass {mass} kg")
+    BULKY_VOLUME = 1000000
+    BULKY_DIMENSION = 150
+    HEAVY_MASS = 20
+    
+    is_bulky = False
+    if (width * height * length) >= BULKY_VOLUME:
+        is_bulky = True
+    elif width >= BULKY_DIMENSION or height >= BULKY_DIMENSION or length >= BULKY_DIMENSION:
+        is_bulky = True
+
+    is_heavy = False
+    if mass >= HEAVY_MASS:
+        is_heavy = True
+
+    if is_bulky and is_heavy:
+        return "REJECTED"
+    elif is_bulky or is_heavy:
+        return "SPECIAL"
+    else:
+        return "STANDARD"
+
 
 if __name__ == "__main__":
     sort(10, 20, 30, 5)
