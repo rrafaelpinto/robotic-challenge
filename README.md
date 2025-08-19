@@ -76,12 +76,11 @@ pip install -r requirements.txt
 You can call the `sort` function directly from your Python code:
 
 ```python
-from src.main import sort
+python src/main.py 100 10 10 5   # STANDARD
+python src/main.py 200 50 50 15  # SPECIAL
+python src/main.py 10 10 10 25   # SPECIAL
+python src/main.py 160 50 50 30  # REJECTED
 
-print(sort(100, 10, 10, 5))      # STANDARD
-print(sort(200, 50, 50, 15))     # SPECIAL
-print(sort(10, 10, 10, 25))      # SPECIAL
-print(sort(160, 50, 50, 30))     # REJECTED
 ```
 
 ---
