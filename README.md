@@ -80,7 +80,6 @@ python src/main.py 100 10 10 5   # STANDARD
 python src/main.py 200 50 50 15  # SPECIAL
 python src/main.py 10 10 10 25   # SPECIAL
 python src/main.py 160 50 50 30  # REJECTED
-
 ```
 
 ---
@@ -109,7 +108,6 @@ PYTHONPATH=. pytest
 robotic-challenge/
 ├── src/
 │   ├── main.py
-│   └── __init__.py
 ├── tests/
 │   └── test_main.py
 ├── requirements.txt
