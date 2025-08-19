@@ -1,83 +1,124 @@
-### `Thoughtful Package Sorter`
 
-### Project Overview
+# Thoughtful Package Sorter
 
-This repository contains a solution to the FDE Technical Screen challenge for Thoughtful's robotic automation factory. The goal is to implement a Python function that sorts packages into different stacks based on specific criteria related to their dimensions and mass.
+## Project Overview
 
------
+This repository contains a Python solution for Thoughtful's robotic automation factory challenge. The goal is to implement a function that sorts packages into different stacks based on their dimensions and mass.
 
-### The Challenge
+---
 
-The core task is to create a function that dispatches packages to one of three stacks: `STANDARD`, `SPECIAL`, or `REJECTED`. The sorting logic is based on whether a package is considered "bulky" or "heavy."
+## Challenge Description
 
-#### **Sorting Rules:**
+The main task is to create a function that dispatches packages to one of three stacks: `STANDARD`, `SPECIAL`, or `REJECTED`, according to whether a package is considered "bulky" or "heavy".
+
+### Sorting Rules
 
 A package is classified as **bulky** or **heavy** according to these rules:
 
-  - **Bulky:**
-      - Its volume (Width x Height x Length) is greater than or equal to 1,000,000 cm³
-      - **OR** any single dimension (width, height, or length) is greater than or equal to 150 cm.
-  - **Heavy:**
-      - Its mass is greater than or equal to 20 kg.
+- **Bulky:**
+    - Its volume (Width x Height x Length) is greater than or equal to 1,000,000 cm³
+    - **OR** any single dimension (width, height, or length) is greater than or equal to 150 cm.
+- **Heavy:**
+    - Its mass is greater than or equal to 20 kg.
 
-#### **Dispatching Stacks:**
+### Dispatching Stacks
 
-Based on the rules above, packages are dispatched to the following stacks:
+- `REJECTED`: If the package is **both** heavy and bulky.
+- `SPECIAL`: If the package is **either** heavy **or** bulky, but not both.
+- `STANDARD`: If the package is **neither** heavy **nor** bulky.
 
-  - **`REJECTED`**: If the package is **both** heavy and bulky.
-  - **`SPECIAL`**: If the package is **either** heavy **or** bulky, but not both.
-  - **`STANDARD`**: If the package is **neither** heavy **nor** bulky.
+---
 
------
+## Implementation
 
-### Implementation
-
-The solution is implemented in Python. The main function is defined with the following signature:
+The main function is implemented in `src/main.py`:
 
 ```python
 def sort(width, height, length, mass):
-    """
-    Sorts a package into a stack based on its dimensions and mass.
+        """
+        Sorts a package into a stack based on its dimensions and mass.
 
-    Args:
-        width (float): The width of the package in centimeters.
-        height (float): The height of the package in centimeters.
-        length (float): The length of the package in centimeters.
-        mass (float): The mass of the package in kilograms.
+        Args:
+                width (float): The width of the package in centimeters.
+                height (float): The height of the package in centimeters.
+                length (float): The length of the package in centimeters.
+                mass (float): The mass of the package in kilograms.
 
-    Returns:
-        str: The name of the stack ("STANDARD", "SPECIAL", or "REJECTED").
-    """
+        Returns:
+                str: The name of the stack ("STANDARD", "SPECIAL", or "REJECTED").
+        """
+        # ...implementation...
 ```
 
-### Getting Started
+---
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/rrafaelpinto/robotic-challenge.git
-    cd robotic-challenge
-    ```
+## Getting Started
 
-2.  **Run the code:**
-    The `sort` function can be called directly from any Python script. Here is an example:
+### 1. Clone the repository
 
-<!-- end list -->
+```bash
+git clone https://github.com/rrafaelpinto/robotic-challenge.git
+cd robotic-challenge
+```
+
+### 2. Install dependencies
+
+It is recommended to use a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 3. Run the code
+
+You can call the `sort` function directly from your Python code:
+
 ```python
-from sorter import sort
+from src.main import sort
 
-# Example 1: A standard package
-print(f"Package (100x10x10, 5kg) is: {sort(100, 10, 10, 5)}")
-
-# Example 2: A bulky package
-print(f"Package (200x50x50, 15kg) is: {sort(200, 50, 50, 15)}")
-
-# Example 3: A heavy package
-print(f"Package (10x10x10, 25kg) is: {sort(10, 10, 10, 25)}")
-
-# Example 4: A rejected package
-print(f"Package (160x50x50, 30kg) is: {sort(160, 50, 50, 30)}")
+print(sort(100, 10, 10, 5))      # STANDARD
+print(sort(200, 50, 50, 15))     # SPECIAL
+print(sort(10, 10, 10, 25))      # SPECIAL
+print(sort(160, 50, 50, 30))     # REJECTED
 ```
 
-### Author
+---
 
-  * [Rafael Pinto](https://www.linkedin.com/in/rafaelmpinto/)
+## Running Automated Tests
+
+Automated tests are provided in the `tests` directory using `pytest`.
+
+To run all tests:
+
+```bash
+pytest
+```
+
+If you encounter import errors, run:
+
+```bash
+PYTHONPATH=. pytest
+```
+
+---
+
+## Project Structure
+
+```
+robotic-challenge/
+├── src/
+│   ├── main.py
+│   └── __init__.py
+├── tests/
+│   └── test_main.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Author
+
+[Rafael Pinto](https://www.linkedin.com/in/rafaelmpinto/)
