@@ -90,3 +90,13 @@ def test_invalid_type_values():
         sort(width=10, height=10, length=None, mass=5)
     with pytest.raises(TypeError):
         sort(width=10, height=10, length=10, mass={})
+
+def test_fragile_package():
+    """Test for a package that is fragile."""
+    result = sort(width=5, height=5, length=2, mass=5)
+    assert result == "FRAGILE"
+
+def test_high_priority_package():
+    """Test for a package that is high priority."""
+    result = sort(width=5, height=5, length=5, mass=10)
+    assert result == "PRIORITY"
